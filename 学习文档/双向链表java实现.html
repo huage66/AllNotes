@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://www.cnblogs.com/wzyxidian/p/5205601.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+    <title>线性链表的双向链表——java实现 - wzyxidian - 博客园</title>
+<meta property="og:description" content=".线性表链式存储结构:将采用一组地址的任意的存储单元存放线性表中的数据元素。 链表又可分为： 单链表：每个节点只保留一个引用，该引用指向当前节点的下一个节点，没有引用指向头结点，尾节点的next引用为">
+    <link type="text/css" rel="stylesheet" href="./双向链表java实现_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./双向链表java实现_files/style2.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./双向链表java实现_files/bundle-BOOK-mobile.css">
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/wzyxidian/rss">
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/wzyxidian/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/wzyxidian/wlwmanifest.xml">
+    <script src="./双向链表java实现_files/osd.js.下载"></script><script src="./双向链表java实现_files/amp4ads-host-v0.js.下载"></script><script src="./双向链表java实现_files/pubads_impl_rendering_319.js.下载"></script><script async="" src="./双向链表java实现_files/analytics.js.下载"></script><script src="./双向链表java实现_files/jquery-2.2.0.min.js.下载"></script>
+    <script>var currentBlogId=185599;var currentBlogApp='wzyxidian',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="./双向链表java实现_files/MathJax.js.下载"></script>
+<script src="./双向链表java实现_files/blog-common.js.下载" type="text/javascript"></script>
+<link rel="preload" href="./双向链表java实现_files/f.txt" as="script"><script type="text/javascript" src="./双向链表java实现_files/f.txt"></script><script src="./双向链表java实现_files/pubads_impl_319.js.下载" async=""></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-32/html/container.html"><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<a name="top"></a>
+
+
+<script type="text/javascript">
+	try {
+		if (screen.availWidth > 1200) {
+			document.getElementById("MainCss").href = '/Skins/BOOK/style2.css';
+		}
+	} catch (e) { }
+</script>
+
+<div id="header">
+<div id="HeaderTitle">
+<div id="Title">
+<a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/wzyxidian/">wzyxidian</a>
+</div>
+<div id="subTitle"></div>
+</div>
+</div>
+
+<div id="main">
+	
+        <div id="post_detail">
+	<div class="post">
+		<h2>
+			<a id="cb_post_title_url" href="https://www.cnblogs.com/wzyxidian/p/5205601.html">线性链表的双向链表——java实现</a>
+		</h2>
+		<div id="cnblogs_post_body" class="blogpost-body"><p><span style="color: red;">.线性表链式存储结构:将采用一组地址的任意的存储单元存放线性表中的数据元素。 <br style="text-align: left;">链表又可分为：
+<br style="text-align: left;"></span></p>
+<ul class=" list-paddingleft-2">
+<li>
+<p style="text-align: left;">单链表：每个节点只保留一个引用，该引用指向当前节点的下一个节点，没有引用指向头结点，尾节点的next引用为null。
+</p>
+
+</li>
+<li>
+<p style="text-align: left;">循环链表：一种首尾相连的链表。
+</p>
+
+</li>
+<li>
+<p style="text-align: left;">双向链表：每个节点有两个引用，一个指向当前节点的上一个节点，另外一个指向当前节点的下一个节点。
+</p>
+
+</li>
+
+</ul>
+<p>
+<br style="text-align: left;">下面给出线性表双向链表的实现：java中LinkedList是线性表的链式实现，是一个双向链表。</p>
+<p>&nbsp;</p>
+<p>import java.util.NoSuchElementException;</p>
+<p>
+<br style="text-align: left;">//线性表双向链表存储结构<br style="text-align: left;">public class DuLinkList&lt;T&gt; {<br style="text-align: left;"><br style="text-align: left;">&nbsp;&nbsp; &nbsp;//定义一个内部类Node，Node实例代表链表的节点<br style="text-align: left;">&nbsp;&nbsp; &nbsp;private class Node{<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;//保存节点的数据<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;private T data;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;//指向上一个节点的引用<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;private Node prev;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;//指向下一个节点的引用<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;private Node next;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;//无参数的构造器<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;public Node(){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;//初始化全部属性的构造器<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;public Node(T data, Node prev, Node next){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;this.data = data;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;this.prev = prev;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;this.next = next;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//保存该链表的头结点<br style="text-align: left;">&nbsp;&nbsp; &nbsp;private Node header;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//保存该链表的尾节点<br style="text-align: left;">&nbsp;&nbsp; &nbsp;private Node tail;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//保存该链表中已包含的节点数<br style="text-align: left;">&nbsp;&nbsp; &nbsp;private int size;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//创建空链表<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public DuLinkList(){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;//空链表，header与tail都是null<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;header = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;tail = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//以指定数据元素来创建链表，该链表只有一个元素<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public DuLinkList(T element){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;header = new Node(element, null, null);<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;tail = header;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;size++;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//判断链式线性表是否为空链表<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public boolean empty(){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return size == 0;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//清空线性表<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void clear(){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for(Node current = header; current != null;){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node next = header.next;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;current.data = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;current.prev = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;current.next = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;current = next;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;header = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;tail = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;size = 0;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//获取链式线性表中索引为index处的元素<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public T get(int index){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return getNodeByIndex(index).data;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//根据索引index获取指定位置的节点<br style="text-align: left;">&nbsp;&nbsp; &nbsp;private Node getNodeByIndex(int index){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(index &lt; 0 || index &gt; size -1){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;throw new IndexOutOfBoundsException("线性表索引越界");<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(index &lt; (size &gt;&gt; 1)){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;//从header节点开始遍历<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node current = header;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for(int i=0; i &lt; index; i++){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;current = current.next;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return current;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}else{<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node current = tail;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for(int i = size - 1; i &gt; index; i--){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;current = current.prev;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return current;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//查找链式线性表中指定元素的索引<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public int locate(T element){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node current = header;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for(int i=0;i&lt;size &amp;&amp; current != null;i++, current = current.next){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(current.data.equals(element)){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return i;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return -1;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//返回链表的长度<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public int length(){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return size;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//向线性链表的表头插入一个元素<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void addFirst(T element){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;linkFirst(element);<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//在线性链表表头插入一个元素<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void linkFirst(T element){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node f = header;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node newNode = new Node(element,null,f);<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;header = newNode;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(f == null){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;tail = newNode;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}else{<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;f.prev = newNode;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;size++;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//向线性链表的表尾插入一个元素<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void addTail(T element){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;linkTail(element);<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//在线性链表的表尾插入一个元素<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void linkTail(T element){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node t = tail;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node newNode = new Node(element, t, null);<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;tail = newNode;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(t == null){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;header = newNode;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}else{<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;t.next = newNode;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;size++;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//在线性表中某个元素前面插入一个节点<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void linkBefore(T element, Node node){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node pre = node.prev;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node newNode = new Node(element, pre, node);<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;node.prev = newNode;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(pre == null){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;header = newNode;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}else{<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;pre.next = newNode;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;size++;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//向线性链表中的指定位置插入一个元素<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void insert(T element, int index){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(index &lt; 0 || index &gt; size){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;throw new IndexOutOfBoundsException("线性表索引越界");<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(index == size){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;addTail(element);<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}else{<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;linkBefore(element,getNodeByIndex(index));<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//移走线性链表的头结点<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void removeFirst(){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node first = header;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(first == null)<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;throw new NoSuchElementException("此节点不存在");<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;unlinkFirst(first);<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//删除头结点<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void unlinkFirst(Node node){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node next = node.next;&nbsp;&nbsp; &nbsp;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;node.data = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;node.next = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;header = next;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(next == null){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;tail = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}else{<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;next.prev = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;size--;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//移走线性链表的尾节点<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void removeTail(){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node last = tail;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(last == null)<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;throw new NoSuchElementException("此节点不存在");<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;unlinkLast(last);<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//删除尾节点<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void unlinkLast(Node node){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node pre = node.prev;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;node.data = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;node.prev = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;tail = pre;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(pre == null){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;header = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}else{<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;pre.next = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;size--;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//移走线性表中的任意一个节点<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void remove(int index){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(index &lt; 0 || index &gt;size - 1){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;throw new IndexOutOfBoundsException("线性表越界");<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;unlink(getNodeByIndex(index));<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;//删除线性表中任意一个元素<br style="text-align: left;">&nbsp;&nbsp; &nbsp;public void unlink(Node node){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node pre = node.prev;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Node next = node.next;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;node.data = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(pre == null){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;header = next;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}else{<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;pre.next = next;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;node.prev = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if(next == null){<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;tail = pre;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}else{<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;next.prev = pre;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;node.next = null;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;size--;<br style="text-align: left;">&nbsp;&nbsp; &nbsp;}<br style="text-align: left;">}<br style="text-align: left;"><br style="text-align: left;"></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="https://www.cnblogs.com/wzyxidian/category/673485.html" target="_blank">JAVA小记</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5205601,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;9a8ae705-04b3-e211-83e8-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./双向链表java实现_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./双向链表java实现_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wzyxidian/" target="_blank"><img src="./双向链表java实现_files/20140511152834.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wzyxidian/">wzyxidian</a><br>
+            <a href="http://home.cnblogs.com/u/wzyxidian/followees">关注 - 17</a><br>
+            <a href="http://home.cnblogs.com/u/wzyxidian/followers">粉丝 - 23</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;9a8ae705-04b3-e211-83e8-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5205601,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5205601,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/wzyxidian/p/5205254.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/wzyxidian/p/5205254.html" title="发布于2016-02-21 17:27">线性表的顺序存储结构——java</a><br><a href="https://www.cnblogs.com/wzyxidian/p/5211631.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/wzyxidian/p/5211631.html" title="发布于2016-02-24 00:04">Arrays.sort的粗略讲解</a><br></div>
+</div>
+
+
+		<p class="postfoot">
+			posted on <span id="post-date">2016-02-21 21:20</span> <a href="https://www.cnblogs.com/wzyxidian/">wzyxidian</a> 阅读(<span id="post_view_count">1478</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5205601" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/wzyxidian/p/5205601.html#" onclick="AddToWz(5205601);return false;">收藏</a>
+		</p>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=185599,cb_entryId=5205601,cb_blogApp=currentBlogApp,cb_blogUserGuid='9a8ae705-04b3-e211-83e8-90b11c0b17d6',cb_entryCreatedDate='2016/2/21 21:20:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+	</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/wzyxidian/p/5205601.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/wzyxidian/p/5205601.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="https://edu.51cto.com/px/train/248?bky" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-51CTO&#39;)">【幸运】99%的人不知道我们有可以帮你薪资翻倍的秘笈！</a><br><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万C++/C#源码: 大型实时仿真组态图形源码</a><br><a href="https://cloud.baidu.com/campaign/purchase-2019/index.html?track=cp:dsp|pf:pc|pp:chui-bokeyuan-huodong-19caigouji-BCC-neiyeCH-190311|pu:neiyeCH-wenzilian|ci:2019cgj|kw:2105959" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-百度云&#39;)">【推荐】百度云“猪”你开年行大运，红包疯狂拿</a><br><a href="https://ke.qq.com/adActivity.html?name=xiangxueketang2" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-享学&#39;)">【推荐】55K刚面完Java架构师岗，这些技术你必须掌握</a><br></div>
+<div id="opt_under_post"></div>
+<script async="async" src="./双向链表java实现_files/gpt.js.下载"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c1" class="c_ad_block">
+    <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CKbzgMntleECFVV4iwodk-0EBA"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./双向链表java实现_files/saved_resource.html"></iframe></div></div>
+</div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/speaklessdomore/p/3685480.html" target="_blank" onclick="clickRecomItmem(3685480)">双向链表java实现</a><br>·  <a href="https://www.cnblogs.com/miracle2015126/p/5870018.html" target="_blank" onclick="clickRecomItmem(5870018)">线性表实现——双向链表</a><br>·  <a href="https://www.cnblogs.com/cugb-2013/p/3675442.html" target="_blank" onclick="clickRecomItmem(3675442)">java实现双向链表</a><br>·  <a href="https://www.cnblogs.com/sean-zou/p/3709985.html" target="_blank" onclick="clickRecomItmem(3709985)">Java双向链表实现</a><br>·  <a href="https://www.cnblogs.com/darkchii/p/8653921.html" target="_blank" onclick="clickRecomItmem(8653921)">Java - 实现双向链表</a><br></div></div>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CPvmgcntleECFVV4iwodk-0EBA"><div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="2" data-load-complete="true" src="./双向链表java实现_files/saved_resource(1).html"></iframe></div></div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/622425/" target="_blank">Google将与美国将军讨论其中国 AI 实验室</a><br> ·  <a href="https://news.cnblogs.com/n/622424/" target="_blank">DeepMind明年搬11层新总部！盘点这家顶尖AI科研机构的高光时刻</a><br> ·  <a href="https://news.cnblogs.com/n/622423/" target="_blank">他们将iPhone放进搅拌机，只为告诉你这些秘密</a><br> ·  <a href="https://news.cnblogs.com/n/622406/" target="_blank">阿里云发布机器学习平台PAI v3.0</a><br> ·  <a href="https://news.cnblogs.com/n/622407/" target="_blank">腾讯求变，马化腾求稳</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="https://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © wzyxidian
+</p>
+</div>
+<div id="rightmenu">
+	
+		<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/02/01&#39;);return false;">&lt;</a></td><td align="center">2019年3月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/04/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">24</td><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalTodayDay" align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+		
+<h3>导航</h3>
+<ul>
+			<li><a id="blog_nav_sitehome" href="https://www.cnblogs.com/">博客园</a></li>
+			<li><a id="blog_nav_myhome" href="https://www.cnblogs.com/wzyxidian/">首页</a></li>
+			<li><a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+			<li><a id="blog_nav_contact" accesskey="9" rel="nofollow" href="https://msg.cnblogs.com/send/wzyxidian">联系</a></li>
+			<li><a id="blog_nav_rss" href="https://www.cnblogs.com/wzyxidian/rss">订阅</a><a id="blog_nav_rss_image" href="https://www.cnblogs.com/wzyxidian/rss"><img src="./双向链表java实现_files/xml.gif" alt="订阅"></a>
+			</li><li><a id="blog_nav_admin" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div id="blog_stats">
+<h3>统计</h3>
+	<ul>
+		<li>随笔 - 337
+		</li><li>文章 - 0
+		</li><li>评论 - 10
+		</li><li>引用 - 0
+	</li>
+</ul></div>
+		
+<h3>公告</h3>
+	<div id="blog-news"><a href="http://www.clustrmaps.com/map/cnblogs.com/wzyxidian/" title="Visitor Map for cnblogs.com/wzyxidian/"><img src="./双向链表java实现_files/map_v2.png"></a><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/wzyxidian/">wzyxidian</a><br>园龄：<a href="https://home.cnblogs.com/u/wzyxidian/" title="入园时间：2013-05-02">5年10个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/wzyxidian/followers/">23</a><br>关注：<a href="https://home.cnblogs.com/u/wzyxidian/followees/">17</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;9a8ae705-04b3-e211-83e8-90b11c0b17d6&#39;)">+加关注</a></div><script>getFollowStatus('9a8ae705-04b3-e211-83e8-90b11c0b17d6')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+
+		<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/wzyxidian/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/wzyxidian/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/wzyxidian/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/wzyxidian/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/wzyxidian/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<h3 class="catListTitle">最新随笔</h3>
+<div class="RecentComment" id="RecentPosts">
+<ul style="word-break:break-all">
+<li><a href="https://www.cnblogs.com/wzyxidian/p/5969886.html">1. spring cloud官方文档提到的服务开发的12项要素。</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5969292.html">2. Spring顶级项目以及Spring cloud组件</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5969141.html">3. Spring cloud项目实践(一)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5931516.html">4. 栈和队列的面试题Java</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5931486.html">5. B树、B-树、B+树、B*树</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5931485.html">6. http与https的区别</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5931454.html">7. 反向代理与代理服务器</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5931230.html">8. JSON对象与JSON数组</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5930794.html">9. idea快捷方式</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5930635.html">10. Markdown简单语法总结</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="https://www.cnblogs.com/wzyxidian/tag/git/">git</a>(12)</li><li><a href="https://www.cnblogs.com/wzyxidian/tag/Java/">Java</a>(6)</li><li><a href="https://www.cnblogs.com/wzyxidian/tag/Hibernate/">Hibernate</a>(4)</li><li><a href="https://www.cnblogs.com/wzyxidian/tag/Kafka/">Kafka</a>(3)</li><li><a href="https://www.cnblogs.com/wzyxidian/tag/NIO/">NIO</a>(2)</li><li><a href="https://www.cnblogs.com/wzyxidian/tag/AIO/">AIO</a>(2)</li><li><a href="https://www.cnblogs.com/wzyxidian/tag/Arrays/">Arrays</a>(2)</li><li><a href="https://www.cnblogs.com/wzyxidian/tag/BIO/">BIO</a>(2)</li><li><a href="https://www.cnblogs.com/wzyxidian/tag/webx/">webx</a>(2)</li><li><a href="https://www.cnblogs.com/wzyxidian/tag/Myeclipse/">Myeclipse</a>(2)</li><li><a href="https://www.cnblogs.com/wzyxidian/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h3>随笔分类<span style="font-size:11px;font-weight:normal">(323)</span></h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/wzyxidian/category/832282.html">Git(16)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/wzyxidian/category/584250.html">Hibernate(3)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/wzyxidian/category/890502.html">IntelliJIDEA(1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/wzyxidian/category/789326.html">java集合系列(23)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/wzyxidian/category/673485.html">JAVA小记(78)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/wzyxidian/category/804719.html">JVM(5)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/wzyxidian/category/823674.html">Kafka(7)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/wzyxidian/category/747743.html">leetCode(60)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/wzyxidian/category/801572.html">linux(4)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/wzyxidian/category/890383.html">Markdown语法(2)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_10" href="https://www.cnblogs.com/wzyxidian/category/740463.html">Maven(8)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_11" href="https://www.cnblogs.com/wzyxidian/category/673486.html">MYSQL小记(32)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_12" href="https://www.cnblogs.com/wzyxidian/category/895878.html">Restful</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_13" href="https://www.cnblogs.com/wzyxidian/category/740459.html">Spark(6)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_14" href="https://www.cnblogs.com/wzyxidian/category/895875.html">Spring</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_15" href="https://www.cnblogs.com/wzyxidian/category/895874.html">Spring boot</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_16" href="https://www.cnblogs.com/wzyxidian/category/895873.html">Spring Cloud(3)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_17" href="https://www.cnblogs.com/wzyxidian/category/816320.html">操作系统</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_18" href="https://www.cnblogs.com/wzyxidian/category/801571.html">多线程(38)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_19" href="https://www.cnblogs.com/wzyxidian/category/673780.html">脚本(2)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_20" href="https://www.cnblogs.com/wzyxidian/category/891105.html">链表(1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_21" href="https://www.cnblogs.com/wzyxidian/category/801573.html">面试题</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_22" href="https://www.cnblogs.com/wzyxidian/category/768244.html">设计模式(29)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_23" href="https://www.cnblogs.com/wzyxidian/category/890501.html">树图(1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_24" href="https://www.cnblogs.com/wzyxidian/category/816319.html">数据库</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_25" href="https://www.cnblogs.com/wzyxidian/category/816321.html">网络(3)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_26" href="https://www.cnblogs.com/wzyxidian/category/895872.html">微服务</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_27" href="https://www.cnblogs.com/wzyxidian/category/890507.html">栈、队列(1)</a> </li>
+			
+				</ul>
+			
+	
+		<h3>随笔档案<span style="font-size:11px;font-weight:normal">(337)</span></h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/wzyxidian/archive/2016/10.html">2016年10月 (11)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_1" href="https://www.cnblogs.com/wzyxidian/archive/2016/09.html">2016年9月 (11)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_2" href="https://www.cnblogs.com/wzyxidian/archive/2016/08.html">2016年8月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_3" href="https://www.cnblogs.com/wzyxidian/archive/2016/07.html">2016年7月 (5)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_4" href="https://www.cnblogs.com/wzyxidian/archive/2016/06.html">2016年6月 (6)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_5" href="https://www.cnblogs.com/wzyxidian/archive/2016/05.html">2016年5月 (36)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_6" href="https://www.cnblogs.com/wzyxidian/archive/2016/04.html">2016年4月 (25)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_7" href="https://www.cnblogs.com/wzyxidian/archive/2016/03.html">2016年3月 (61)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_8" href="https://www.cnblogs.com/wzyxidian/archive/2016/02.html">2016年2月 (47)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_9" href="https://www.cnblogs.com/wzyxidian/archive/2016/01.html">2016年1月 (32)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_10" href="https://www.cnblogs.com/wzyxidian/archive/2015/12.html">2015年12月 (29)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_11" href="https://www.cnblogs.com/wzyxidian/archive/2015/11.html">2015年11月 (14)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_12" href="https://www.cnblogs.com/wzyxidian/archive/2015/10.html">2015年10月 (25)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_13" href="https://www.cnblogs.com/wzyxidian/archive/2015/08.html">2015年8月 (4)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_14" href="https://www.cnblogs.com/wzyxidian/archive/2015/04.html">2015年4月 (25)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_15" href="https://www.cnblogs.com/wzyxidian/archive/2014/06.html">2014年6月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_16" href="https://www.cnblogs.com/wzyxidian/archive/2014/05.html">2014年5月 (3)</a> </li>
+			
+				</ul>
+			
+	
+		<h3>文章分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_2_Link_0" href="https://www.cnblogs.com/wzyxidian/category/890500.html">树图</a> </li>
+			
+				</ul>
+			
+	</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/wzyxidian/p/5534170.html#4051474">1. Re:Java ftp断点续传</a></li>
+        <li class="recent_comment_body">你这里如何实现断点续传啦，你断开之后在下载他把之前的临时文件给删除啦</li>
+        <li class="recent_comment_author">--tre</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/wzyxidian/p/5931516.html#4050254">2. Re:栈和队列的面试题Java</a></li>
+        <li class="recent_comment_body">楼主有没有想过栈的那个简单实现其实也可以不要head引用</li>
+        <li class="recent_comment_author">--林冲—first</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/wzyxidian/p/5860473.html#3841499">3. Re:JAVA 内存泄漏与内存溢出</a></li>
+        <li class="recent_comment_body">这里是不是有错误啊。我运行了这段代码，但是运行结果是：总共有:3 个元素!总共有:3 个元素!Person.Person@6f349665Person.Person@ca047d3Person.Per......</li>
+        <li class="recent_comment_author">--七月流火嗞嗞嗞</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/wzyxidian/p/5860473.html#3841393">4. Re:JAVA 内存泄漏与内存溢出</a></li>
+        <li class="recent_comment_body">不错。</li>
+        <li class="recent_comment_author">--七月流火嗞嗞嗞</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/wzyxidian/p/5535029.html#3836455">5. Re:Java 比较两个字符串的大小</a></li>
+        <li class="recent_comment_body">给大佬端茶</li>
+        <li class="recent_comment_author">--只能看远方</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/wzyxidian/p/5520068.html">1. Eclipse配置Git(12527)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5520002.html">2. Git 、CVS、SVN比较(8837)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5533138.html">3. 获取当前工程路径(8771)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5969292.html">4. Spring顶级项目以及Spring cloud组件(7367)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5213774.html">5. For循环的执行顺序(6256)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/wzyxidian/p/3762136.html">1. Hibernate的配置文件解析(2)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5860473.html">2. JAVA 内存泄漏与内存溢出(2)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5535029.html">3. Java 比较两个字符串的大小(1)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5534170.html">4. Java ftp断点续传(1)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/4769573.html">5. Java Integer类分析(1)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/wzyxidian/p/5379260.html">1. HashMap大小选择(2)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5324988.html">2. ActiveMQ集群应用(1)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/3762136.html">3. Hibernate的配置文件解析(1)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/4769573.html">4. Java Integer类分析(1)</a></li><li><a href="https://www.cnblogs.com/wzyxidian/p/5074978.html">5. 使用 Java 开发兼容 IPv6 的网络应用程序(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+	
+</div>
+			
+			
+			
+			
+			 
+
+	
+
+
+
+
+<iframe id="google_osd_static_frame_13228641367" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./双向链表java实现_files/saved_resource(2).html"></iframe></body></html>

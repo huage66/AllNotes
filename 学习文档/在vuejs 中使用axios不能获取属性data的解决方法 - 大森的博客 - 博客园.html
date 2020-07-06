@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.cnblogs.com/lonecry/p/9261885.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="axios请求数据： 出错问题：在then&amp;#160;这个里边的赋值方法this.followed = response.data.followed会出现报错，什么原因呢？在Google上查了下，原来">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园</title>
+    
+    <link rel="stylesheet" href="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/bundle-codinglife.min.css">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/bundle-codinglife-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/lonecry/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/lonecry/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/lonecry/wlwmanifest.xml">
+    <script src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/amp4ads-host-v0.js.下载"></script><script async="" src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/encoder.js.下载"></script><script src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+    <script src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/blog-common.min.js.下载"></script>
+    <script>
+        var currentBlogId = 260255;
+        var currentBlogApp = 'lonecry';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var skinName = 'CodingLife';
+    </script>
+    
+    
+    
+<link rel="preload" href="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/f.txt"></script><script src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/pubads_impl_2020043001.js.下载" async=""></script><link rel="prefetch" href="https://639bfaa69e17cb011b3ae11ba0f4971b.safeframe.googlesyndication.com/safeframe/1-0-37/html/container.html"><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-37/html/container.html"></head>
+<body>
+    <a name="top"></a>
+    
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/lonecry/"><img id="blogLogo" src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/lonecry/">刀刀小丑</a>
+</h1>
+<h2>
+
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/lonecry/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E5%A4%A7%E6%A3%AE%E7%9A%84%E5%8D%9A%E5%AE%A2">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/lonecry/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+13&nbsp; </span>
+<span id="stats_article_count">文章 - 
+0&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+1</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/lonecry/p/9261885.html">在vuejs 中使用axios不能获取属性data的解决方法</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <h1 style="margin-left: 30px;"><span style="color: #339966; font-size: 18px;">&nbsp;</span></h1>
+<div class="cnblogs_code">
+<pre><span style="font-size: 14pt;"> vuejs和axios使用钩子mounted不能获取属性data的解决方法</span></pre>
+</div>
+<p><span style="font-size: 18px;">&nbsp;</span></p>
+<div class="cnblogs_code">
+<pre><span style="font-size: 14pt;"><span style="color: #000000;">data(){
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> {
+            followed : </span><span style="color: #0000ff;">false</span><span style="color: #000000;">,
+        }
+    },</span></span></pre>
+</div>
+<p><span style="font-size: 18px;">axios请求数据：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14pt;"> <span style="color: #008000;">//</span><span style="color: #008000;"> mounted 方法为钩子，在Vue实例化后自动调用</span>
+<span style="color: #000000;">    mounted() {
+       axios.post(</span>'/api/question/follower'<span style="color: #000000;">, {
+           </span>'question':<span style="color: #0000ff;">this</span><span style="color: #000000;">.question,
+           </span>'user':<span style="color: #0000ff;">this</span><span style="color: #000000;">.user
+       }).then(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(response){
+           </span><span style="color: #008000;">//</span><span style="color: #008000;"> console.log(response.data);</span>
+           <span style="color: #0000ff;">this</span>.followed =<span style="color: #000000;"> response.data.followed;
+       })
+    },</span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px; font-family: &#39;Microsoft YaHei&#39;;">出错问题：</span><br><span style="font-size: 18px; font-family: &#39;Microsoft YaHei&#39;;">在<span style="font-family: &#39;times new roman&#39;, times;"><strong><span style="color: #339966;"><code>then</code></span></strong>&nbsp;</span>这个里边的赋值方法<span style="color: #339966;"><strong><span style="font-family: &#39;times new roman&#39;, times;"><code>this.followed = response.data.followed</code></span></strong></span>会出现报错，什么原因呢？在Google上查了下，原来是在<span style="font-family: &#39;times new roman&#39;, times;">&nbsp;<code>then</code></span>的内部不能使用Vue的实例化的<span style="font-family: &#39;times new roman&#39;, times;"><span style="color: #339966;"><strong><code>this</code></strong></span>,</span> 因为在内部<span style="color: #339966;"><strong>&nbsp;</strong></span><span style="font-family: &#39;times new roman&#39;, times;"><span style="color: #339966;"><strong><code>this</code></strong></span>&nbsp;</span>没有被绑定。</span><br><span style="font-size: 18px; font-family: &#39;Microsoft YaHei&#39;;">可以看下<span style="color: #339966;"><strong>&nbsp;</strong><a href="https://stackoverflow.com/questions/40996344/axios-cant-set-data" target="_blank"><span style="color: #339966;"><strong>Stackoverflow</strong>&nbsp;</span></a></span>的解释：</span></p>
+<p><span style="font-size: 18px;">&nbsp;</span></p>
+<div class="cnblogs_code">
+<pre><span style="font-size: 18px;">In option functions like data and created, vue binds <span style="color: #0000ff;">this</span> to the view-model instance <span style="color: #0000ff;">for</span> us,<br>so we can use <span style="color: #0000ff;">this</span>.followed, but <span style="color: #0000ff;">in</span> the <span style="color: #0000ff;">function</span> inside then, <span style="color: #0000ff;">this</span> is not bound.</span></pre>
+</div>
+<p><span style="font-size: 18px;">&nbsp;</span></p>
+<p><span style="font-size: 18px;">解决方法：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 18px;"><span style="color: #000000;"> created() {
+       </span><strong><span style="color: #ff0000;">var self = this</span></strong><span style="color: #000000;"><strong><span style="color: #ff0000;">;</span></strong>
+       axios.post(</span>'/api/question/follower'<span style="color: #000000;">, {
+           </span>'question':<span style="color: #0000ff;">this</span><span style="color: #000000;">.question,
+           </span>'user':<span style="color: #0000ff;">this</span><span style="color: #000000;">.user
+       }).then(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(response){
+           </span><span style="color: #008000;">//</span><span style="color: #008000;"> console.log(response.data);</span>
+         <strong><span style="color: #ff0000;">  self</span></strong>.followed =<span style="color: #000000;"> response.data.followed;
+       })
+    },</span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">&nbsp;</span></p>
+<p><span style="font-size: 18px;">或者我们可以使用&nbsp;<code>ES6</code>&nbsp;的&nbsp;箭头函数<code>arrow function</code>，箭头方法可以和父方法共享变量 ：</span></p>
+<p><span style="font-size: 18px;">&nbsp;</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14pt;"><span style="color: #000000;"> created() {
+       axios.post(</span>'/api/question/follower'<span style="color: #000000;">, {
+           </span>'question':<span style="color: #0000ff;">this</span><span style="color: #000000;">.question,
+           </span>'user':<span style="color: #0000ff;">this</span><span style="color: #000000;">.user
+       }).then(<span style="color: #ff0000;"><strong>(response) </strong></span></span><span style="color: #ff0000;"><strong>=&gt;</strong></span><span style="color: #000000;"> {
+           </span><span style="color: #0000ff;">this</span>.followed =<span style="color: #000000;"> response.data.followed;
+       })
+    },</span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">完整代码：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-size: 14pt;">&lt;script&gt;<span style="color: #000000;">
+export </span><span style="color: #0000ff;">default</span><span style="color: #000000;"> {
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 为父组件传递到子组件的属性值，子组件使用props方法接收</span>
+    props:['question', 'user'<span style="color: #000000;">],
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> mounted 方法为钩子，在Vue实例化后自动调用</span>
+<span style="color: #000000;">    mounted() {
+       </span><span style="color: #000000;">
+       axios.post(</span>'/api/question/follower'<span style="color: #000000;">, {
+           </span>'question':<span style="color: #0000ff;">this</span><span style="color: #000000;">.question,
+           </span>'user':<span style="color: #0000ff;">this</span><span style="color: #000000;">.user
+       }).then(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(response){
+           </span><span style="color: #008000;">//</span><span style="color: #008000;"> console.log(response.data);</span>
+           <span style="color: #0000ff;">this</span>.followed =<span style="color: #000000;"> response.data.followed;
+       })
+    },
+    data(){
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> {
+            followed : </span><span style="color: #0000ff;">false</span><span style="color: #000000;">,
+        }
+    },
+    computed:{
+        text(){
+           </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span>.followed ? '已关注' : '关注该问题'<span style="color: #000000;">;
+        }
+    },
+    methods:{
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 关注动作</span>
+<span style="color: #000000;">        follow(){
+            axios.post(</span>'/api/question/follow'<span style="color: #000000;">, {
+                </span>'question':<span style="color: #0000ff;">this</span><span style="color: #000000;">.question,
+                </span>'user':<span style="color: #0000ff;">this</span><span style="color: #000000;">.user
+            }).then(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(response){
+                </span><span style="color: #0000ff;">this</span>.followed =<span style="color: #000000;"> response.data.followed;
+            })
+        }
+    }
+}
+</span>&lt;/script&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">参考文章：</span><br><span style="color: #339966; font-size: 18px;"><a href="http://stackoverflow.com/questions/40996344/axios-cant-set-data" rel="nofollow noreferrer" target="_blank"><span style="color: #339966;">Stackoverflow：Axios can't set data</span></a></span></p>
+<p><span style="font-size: 18px;">&nbsp;</span></p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="EntryTag">
+    标签: 
+            <a href="https://www.cnblogs.com/lonecry/tag/vue/">vue</a>,             <a href="https://www.cnblogs.com/lonecry/tag/axios/">axios</a></div>
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(9261885,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;85b27d3e-eea9-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/lonecry/" target="_blank"><img src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/20161125140832.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/lonecry/">大森的博客</a><br>
+            <a href="https://home.cnblogs.com/u/lonecry/followees/">关注 - 13</a><br>
+            <a href="https://home.cnblogs.com/u/lonecry/followers/">粉丝 - 1</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;85b27d3e-eea9-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(9261885,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(9261885,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/lonecry/p/8203223.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/lonecry/p/8203223.html" title="发布于 2018-01-05 14:34">createPattern() 自定义宽高</a>
+    <br>
+    <a href="https://www.cnblogs.com/lonecry/p/9271946.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/lonecry/p/9271946.html" title="发布于 2018-07-06 09:41">《将博客搬至CSDN》</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2018-07-04 10:03</span>&nbsp;
+<a href="https://www.cnblogs.com/lonecry/">大森的博客</a>&nbsp;
+阅读(<span id="post_view_count">4163</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=9261885" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(9261885);return false;">收藏</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/highlight.min.js.下载"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 260255, cb_blogApp = 'lonecry', cb_blogUserGuid = '85b27d3e-eea9-e511-9fc1-ac853d9f53cc';
+    var cb_entryId = 9261885, cb_entryCreatedDate = '2018-07-04 10:03', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+    loadSideColumnAd();
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/lonecry/p/9261885.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/lonecry/p/9261885.html#top">返回顶部</a></div>
+    <div id="comment_form_container" style="visibility: visible;"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-ucancode&#39;)">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://developer.aliyun.com/article/743756?utm_content=g_1000104139" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云开发者社区&#39;)">【推荐】Java经典面试题整理及答案详解（二）</a><br><a href="https://developer.aliyun.com/article/714279?utm_content=g_1000088939" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云开发者社区&#39;)">【推荐】阿里毕玄16篇文章，深度讲解Java开发、系统设计、职业发展</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/gpt.js.下载"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CPbHifKvkukCFYiRlgodgD0EMQ"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/saved_resource.html"></iframe></div></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="VUE.JS使用axios数据请求时数据绑定时报错TypeError:Cannotsetproperty&#39;xxxx&#39;ofundefined的解决办法" href="https://www.cnblogs.com/xxflz/p/9939627.html" target="_blank" onclick="clickRecomItmem(9939627)">VUE.JS使用axios数据请求时数据绑定时报错TypeError:Cannotsetproperty'xxxx'ofundefined的解决办法</a><br>·  <a title="vueJS 获取后台数据 绑定data" href="https://www.cnblogs.com/xiaomixia/p/6612239.html" target="_blank" onclick="clickRecomItmem(6612239)">vueJS 获取后台数据 绑定data</a><br>·  <a title="解决在vue中axios请求超时的问题" href="https://www.cnblogs.com/zhouyangla/p/8757149.html" target="_blank" onclick="clickRecomItmem(8757149)">解决在vue中axios请求超时的问题</a><br>·  <a title="vuejs+axios发送请求" href="https://www.cnblogs.com/qwert1/p/8909455.html" target="_blank" onclick="clickRecomItmem(8909455)">vuejs+axios发送请求</a><br>·  <a title="Vue 爬坑之路（六）—— 使用 Vuex + axios 发送请求" href="https://www.cnblogs.com/wisewrong/p/6402183.html" target="_blank" onclick="clickRecomItmem(6402183)">Vue 爬坑之路（六）—— 使用 Vuex + axios 发送请求</a><br>»  <a target="_blank" href="https://recomm.cnblogs.com/blogpost/9261885">更多推荐...</a><div id="cnblogs_t5"><a href="https://developer.aliyun.com/ask/257834?utm_content=g_1000088953" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T5-阿里云开发者社区&#39;)">大咖问答：D2 前端技术专场问答</a></div></div></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CPfHifKvkukCFYiRlgodgD0EMQ">
+            
+        <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="2" data-load-complete="true" src="./在vuejs 中使用axios不能获取属性data的解决方法 - 大森的博客 - 博客园_files/saved_resource(1).html"></iframe></div></div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/661005/" target="_blank">疫情之下微软收入猛增15%！远程办公产品Teams日活达7500万</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/661004/" target="_blank">世界上最后一个深海实验室，隐藏了人类未来的秘密</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/661003/" target="_blank">盖茨：接触者追踪技术有效但不完美，两年内可为30亿人进行疫苗接种</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/660983/" target="_blank">苹果财报电话会议实录：股票回购计划再增加500亿美元</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/661002/" target="_blank">虎牙年报披露2019年扭亏为盈，腾讯操持下与斗鱼合并倒计时？</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem"><!--done-->
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/lonecry/">
+            大森的博客
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/lonecry/" title="入园时间：2015-12-24">
+            4年4个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/lonecry/followers/">
+            1
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/lonecry/followees/">
+            13
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow(&#39;85b27d3e-eea9-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div>
+        <script>getFollowStatus('85b27d3e-eea9-e511-9fc1-ac853d9f53cc');</script>
+    </div>
+</div>
+
+</div>
+
+<div id="sidebar_ad"></div>
+			<div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2020/04/01&#39;); return false;">&lt;</a>
+                            </td>
+                            <td align="center">2020年5月</td>
+                            <td align="right" class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2020/06/01&#39;); return false;">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+                    <th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+                    <th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+                    <th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+                    <th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+                    <th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+                    <th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+                    <th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+        </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">26</td>
+                            <td class="CalOtherMonthDay" align="center">27</td>
+                            <td class="CalOtherMonthDay" align="center">28</td>
+                            <td class="CalOtherMonthDay" align="center">29</td>
+                            <td class="CalOtherMonthDay" align="center">30</td>
+                        <td class="CalTodayDay" align="center">
+                            1
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        2
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            3
+                        </td>
+                            <td class="" align="center">
+                                4
+                            </td>
+                            <td class="" align="center">
+                                5
+                            </td>
+                            <td class="" align="center">
+                                6
+                            </td>
+                            <td class="" align="center">
+                                7
+                            </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            9
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            10
+                        </td>
+                            <td class="" align="center">
+                                11
+                            </td>
+                            <td class="" align="center">
+                                12
+                            </td>
+                            <td class="" align="center">
+                                13
+                            </td>
+                            <td class="" align="center">
+                                14
+                            </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            16
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            17
+                        </td>
+                            <td class="" align="center">
+                                18
+                            </td>
+                            <td class="" align="center">
+                                19
+                            </td>
+                            <td class="" align="center">
+                                20
+                            </td>
+                            <td class="" align="center">
+                                21
+                            </td>
+                            <td class="" align="center">
+                                22
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            23
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            24
+                        </td>
+                            <td class="" align="center">
+                                25
+                            </td>
+                            <td class="" align="center">
+                                26
+                            </td>
+                            <td class="" align="center">
+                                27
+                            </td>
+                            <td class="" align="center">
+                                28
+                            </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            30
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            31
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                1
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                2
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                4
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                5
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            6
+                        </td>
+                </tr>
+    </tbody>
+</table></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+<div id="sidebar_shortcut" class="sidebar-block">
+    <div class="catListLink">
+<h3 class="catListTitle">
+常用链接
+</h3>
+<ul>
+		<li>
+
+<a href="https://www.cnblogs.com/lonecry/p/" title="我的博客的随笔列表">我的随笔</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/lonecry/MyComments.html" title="我的发表过的评论列表">我的评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/lonecry/OtherPosts.html" title="我评论过的随笔列表">我的参与</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/lonecry/RecentComments.html" title="我的博客的评论列表">最新评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/lonecry/tag/" title="我的博客的标签列表">我的标签</a>
+</li>
+
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+
+
+</div>
+
+<!-- 最新随笔 -->
+
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    <div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+
+        <li>
+            <a href="https://www.cnblogs.com/lonecry/tag/axios/">axios</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lonecry/tag/canvas/">canvas</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lonecry/tag/createPattern/">createPattern</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lonecry/tag/Hack%20wifi/">Hack wifi</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lonecry/tag/javascript/">javascript</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lonecry/tag/vue/">vue</a>(1)
+        </li>
+    <li>
+        <a href="https://www.cnblogs.com/lonecry/tag/">更多</a>
+    </li>
+
+</ul>
+</div>
+
+
+</div>
+
+<!-- 积分与排名 -->
+
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/lonecry/archive/2018/07.html" rel="" target="">
+    2018年7月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/lonecry/archive/2018/01.html" rel="" target="">
+    2018年1月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/lonecry/archive/2016/11.html" rel="" target="">
+    2016年11月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/lonecry/archive/2016/04.html" rel="" target="">
+    2016年4月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/lonecry/archive/2016/03.html" rel="" target="">
+    2016年3月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/lonecry/archive/2016/01.html" rel="" target="">
+    2016年1月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/lonecry/archive/2015/12.html" rel="" target="">
+    2015年12月(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/lonecry/archive/2015/08.html" rel="" target="">
+    2015年8月(2)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/lonecry/p/5102777.html">1. Re:Web项目部署，通过域名或IP直接访问</a></li>
+                    <li class="recent_comment_body">只有root能直接访问1024以下的端口<br>所以要用80端口的话,我觉得还是把8080重定向到80,这样不用root也可以启动tomcat</li>
+                    <li class="recent_comment_author">--天之灵</li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/lonecry/p/5074664.html">
+                            1. WEB后台传数据给前台(5691)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/lonecry/p/9261885.html">
+                            2. 在vuejs 中使用axios不能获取属性data的解决方法(4163)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/lonecry/p/8203223.html">
+                            3. createPattern() 自定义宽高(1624)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/lonecry/p/5102777.html">
+                            4. Web项目部署，通过域名或IP直接访问(1213)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/lonecry/p/5074663.html">
+                            5. fileupload图片上传到指定文件夹(689)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    <div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/lonecry/p/5102777.html">
+                            1. Web项目部署，通过域名或IP直接访问(1)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+<div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">推荐排行榜</h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/lonecry/p/5074664.html">
+                                1. WEB后台传数据给前台(2)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/lonecry/p/5102777.html">
+                                2. Web项目部署，通过域名或IP直接访问(1)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2020 大森的博客
+<br><span id="poweredby">Powered by .NET Core on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+</body></html>

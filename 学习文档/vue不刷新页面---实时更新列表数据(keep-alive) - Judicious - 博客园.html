@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://www.cnblogs.com/yxkNotes/p/11584532.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="vue不刷新页面---实时更新列表数据">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园</title>
+    
+    <link rel="stylesheet" href="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/bundle-codinglife.min.css">
+    <link type="text/css" rel="stylesheet" href="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/custom.css">
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/bundle-codinglife-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/yxkNotes/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/yxkNotes/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/yxkNotes/wlwmanifest.xml">
+    <script src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/pubads_impl_rendering_2020042301.js.下载"></script><script async="" src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/analytics.js.下载"></script><script src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+    <script src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/blog-common.min.js.下载"></script>
+    <script>
+        var currentBlogId = 544264;
+        var currentBlogApp = 'yxkNotes';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var skinName = 'CodingLife';
+    </script>
+    
+    
+    
+<link rel="preload" href="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/f.txt"></script><script src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/pubads_impl_2020042301.js.下载" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-37/html/container.html"></head>
+<body>
+    <a name="top"></a>
+    <div id="page_begin_html"><span class="texttit">Don't choose comfort in the age of suffering</span>
+<script type="text/javascript">window['__document_write_ajax_callbacks__']['3']();</script><script type="text/javascript" color="0,255,255" opacity="0.8" zindex="-2" count="800" defer="">window['__document_write_ajax_callbacks__']['1']();</script>
+</div>
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/yxkNotes/"><img id="blogLogo" src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/yxkNotes/">Judicious</a>
+</h1>
+<h2>
+------时间从来不语，却回答了所有问题
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/yxkNotes/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/Judicious">
+联系</a></li>
+<li>
+
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+55&nbsp; </span>
+<span id="stats_article_count">文章 - 
+0&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+1</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/yxkNotes/p/11584532.html">vue不刷新页面---实时更新列表数据(keep-alive)</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+    <div id="cnblogs_post_description" style="display: none">
+        vue不刷新页面---实时更新列表数据
+    </div>
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <p><strong>1.概念问题</strong></p>
+<ul>
+<li>created()：在创建vue对象时，当html渲染之前就触发；但是注意，全局vue.js不强制刷新或者重启时只创建一次，也就是说，created()只会触发一次；</li>
+<li>activated()：在vue对象存活的情况下，进入当前存在activated()函数的页面时，一进入页面就触发；可用于初始化页面数据等</li>
+</ul>
+<p><strong>2.更新操作</strong></p>
+<p><em>注意：可以在增/删/改查/成功之后，跳转页面路由时加上触发更新的标识</em></p>
+<p>应用实例：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_394077" class="syntaxhighlighter  javascript"><div class="toolbar"><span><a href="https://www.cnblogs.com/yxkNotes/p/11584532.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="javascript comments">//路由跳转写法</code></div><div class="line number2 index1 alt1"><code class="javascript keyword">this</code><code class="javascript plain">.$router.push({ name: </code><code class="javascript string">'Customerinfo'</code><code class="javascript plain">, params: { flush: </code><code class="javascript string">'on'</code> <code class="javascript plain">}})</code></div><div class="line number3 index2 alt2"><code class="javascript comments">//跳转之后的页面加上activated钩子</code></div><div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;</code><code class="javascript plain">activated() {</code></div><div class="line number5 index4 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">if</code> <code class="javascript plain">(</code><code class="javascript keyword">this</code><code class="javascript plain">.$route.params.flush === </code><code class="javascript string">'on'</code><code class="javascript plain">) {</code></div><div class="line number6 index5 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">this</code><code class="javascript plain">.getList() </code><code class="javascript comments">// 获取分页信息</code></div><div class="line number7 index6 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number8 index7 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number9 index8 alt2"><code class="javascript comments">//类似于上述这样通过标识触发钩子函数，然后更新列表数据</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>　<span style="color: #ff0000;">注意：activated()生命周期函数一定是要在使用了keep-alive组件后才会有</span></p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/yxkNotes/category/1555478.html" target="_blank">vue-element-admin</a></div>
+<div id="EntryTag">
+    标签: 
+            <a href="https://www.cnblogs.com/yxkNotes/tag/vue/">vue</a></div>
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(11584532,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;83539899-9001-4186-0713-08d731326447&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/yxkNotes/" target="_blank"><img src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/20200403165219.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/yxkNotes/">Judicious</a><br>
+            <a href="https://home.cnblogs.com/u/yxkNotes/followees/">关注 - 3</a><br>
+            <a href="https://home.cnblogs.com/u/yxkNotes/followers/">粉丝 - 3</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;83539899-9001-4186-0713-08d731326447&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(11584532,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(11584532,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/yxkNotes/p/11583771.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/yxkNotes/p/11583771.html" title="发布于 2019-09-25 11:50">vue中特殊字符转义</a>
+    <br>
+    <a href="https://www.cnblogs.com/yxkNotes/p/11584656.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/yxkNotes/p/11584656.html" title="发布于 2019-09-25 15:01">element-ui中el-table（隔行换色，复选框回显）</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2019-09-25 14:49</span>&nbsp;
+<a href="https://www.cnblogs.com/yxkNotes/">Judicious</a>&nbsp;
+阅读(<span id="post_view_count">3203</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=11584532" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(11584532);return false;">收藏</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/highlight.min.js.下载"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 544264, cb_blogApp = 'yxkNotes', cb_blogUserGuid = '83539899-9001-4186-0713-08d731326447';
+    var cb_entryId = 11584532, cb_entryCreatedDate = '2019-09-25 14:49', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+    loadSideColumnAd();
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/yxkNotes/p/11584532.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/yxkNotes/p/11584532.html#top">返回顶部</a></div>
+    <div id="comment_form_container" style="visibility: visible;"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-ucancode&#39;)">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://developer.aliyun.com/article/715141?utm_content=g_1000088938" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云开发者社区&#39;)">【推荐】12知识点+20干货案例+110面试题，助你拿offer | Python面试宝典</a><br><a href="https://developer.aliyun.com/article/744375?utm_content=g_1000104137" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云开发者社区&#39;)">【推荐】合辑 | 学习python不可不知的开发者词条汇总！</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./vue不刷新页面---实时更新列表数据(keep-alive) - Judicious - 博客园_files/gpt.js.下载"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block" style="">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="COzjj-uplekCFQYUvQodUtQP0A"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none; width: 300px; height: 250px;"></div></div>
+    </div>
+    <div id="under_post_news"></div>
+    <div id="cnblogs_c2" class="c_ad_block" style="">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CO3jj-uplekCFQYUvQodUtQP0A">
+            <script>
+                if (new Date() >= new Date(2018, 9, 13)) {
+                    googletag.cmd.push(function () { googletag.display("div-gpt-ad-1539008685004-0"); });
+                }
+            </script>
+        <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none; width: 468px; height: 60px;"></div></div>
+    </div>
+    <div id="under_post_kb"></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem"><!--done-->
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    <script type="text/javascript">window['__document_write_ajax_callbacks__']['2']();</script><script type="text/javascript">window['__document_write_ajax_callbacks__']['3']();</script><script>window['__document_write_ajax_callbacks__']['1']();</script>
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/yxkNotes/">
+            Judicious
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/yxkNotes/" title="入园时间：2019-09-05">
+            7个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/yxkNotes/followers/">
+            3
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/yxkNotes/followees/">
+            3
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow(&#39;83539899-9001-4186-0713-08d731326447&#39;)">+加关注</a></div>
+        <script type="text/javascript">window['__document_write_ajax_callbacks__']['4']();</script><script>window['__document_write_ajax_callbacks__']['2']();</script>
+    </div>
+</div>
+
+</div>
+
+<div id="sidebar_ad"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+
+
+<!-- 最新随笔 -->
+
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    <div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+
+        <li>
+            <a href="https://www.cnblogs.com/yxkNotes/tag/vue/">vue</a>(18)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/yxkNotes/tag/js/">js</a>(14)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/yxkNotes/tag/HTML-CSS/">HTML-CSS</a>(7)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/yxkNotes/tag/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>(6)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/yxkNotes/tag/ES6%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">ES6数组方法</a>(4)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/yxkNotes/tag/git/">git</a>(2)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/yxkNotes/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>(2)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/yxkNotes/tag/Promise/">Promise</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/yxkNotes/tag/URL%E5%8F%82%E6%95%B0/">URL参数</a>(1)
+        </li>
+    <li>
+        <a href="https://www.cnblogs.com/yxkNotes/tag/">更多</a>
+    </li>
+
+</ul>
+</div>
+
+
+</div>
+
+<!-- 积分与排名 -->
+<div id="sidebar_scorerank" class="sidebar-block">
+    <div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	
+24836
+	</li>
+	<li class="liRank">
+		排名 -	
+32810
+	</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yxkNotes/archive/2020/04.html" rel="" target="">
+    2020年4月(18)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yxkNotes/archive/2020/01.html" rel="" target="">
+    2020年1月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yxkNotes/archive/2019/12.html" rel="" target="">
+    2019年12月(6)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yxkNotes/archive/2019/11.html" rel="" target="">
+    2019年11月(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yxkNotes/archive/2019/10.html" rel="" target="">
+    2019年10月(6)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yxkNotes/archive/2019/09.html" rel="" target="">
+    2019年9月(19)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/yxkNotes/p/11527877.html">1. Re:Vue1.x和2.x区别</a></li>
+                    <li class="recent_comment_body">博主好帅哈哈哈</li>
+                    <li class="recent_comment_author">--OzzieNicholas</li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/yxkNotes/p/11584842.html">
+                            1. el-select 中 v-model 绑定的值与如何进行回显(4699)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/yxkNotes/p/11584532.html">
+                            2. vue不刷新页面---实时更新列表数据(keep-alive)(3203)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/yxkNotes/p/11583771.html">
+                            3. vue中特殊字符转义(2808)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    <div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/yxkNotes/p/11527877.html">
+                            1. Vue1.x和2.x区别(1)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+<div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">推荐排行榜</h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/yxkNotes/p/11550093.html">
+                                1. 数组方法：every()和some()用法区别(1)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2020 Judicious
+<br><span id="poweredby">Powered by .NET Core on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+<script type="text/javascript">
+/* 鼠标特效 */
+var a_idx = 0;
+jQuery(document).ready(function($) {
+    $("body").click(function(e) {
+var a = new Array("❤你来啦❤");
+        var $i = $("<span></span>").text(a[a_idx]);
+        a_idx = (a_idx + 1) % a.length;
+        var x = e.pageX,
+        y = e.pageY;
+        $i.css({
+            "z-index": 9999999999999999999999999999,
+            "top": y - 10,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random()+1)+")",
+            "font-size":"15px"
+        });
+        $("body").append($i);
+        $i.animate({
+            "top": y - 180,
+            "opacity": 1
+        },
+        1500,
+        function() {
+            $i.remove();
+        });
+    });
+});
+</script><script type="text/javascript">getFollowStatus('83539899-9001-4186-0713-08d731326447');</script><canvas id="c_n28" width="1536" height="674" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;"></canvas></body></html>

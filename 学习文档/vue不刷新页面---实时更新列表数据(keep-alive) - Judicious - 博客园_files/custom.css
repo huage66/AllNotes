@@ -1,0 +1,232 @@
+body {
+  background: url(https://images.cnblogs.com/cnblogs_com/yxkNotes/1556367/o_b.jpg) fixed;
+ /*background:rgba(187,255,238,0.5);*/
+   max-width:100%;
+   background-size: 100% 100%;
+}
+/*顶部样式*/
+#blogTitle {
+    background: rgba(255,255,255,0); 
+    height: 43px;
+    clear: both;
+    width: 95%;
+    margin: 0 auto;
+    position: relative;
+   font-family:'华文行楷'
+}
+.texttit{
+    position: absolute;
+     height: 40px;
+    line-height: 42px;
+    font-weight: normal;
+    top: 0px;
+    right:10px;
+    font-size: 25px;
+    color: #000 !important;
+    z-index:10;
+   font-family:'华文行楷'
+}
+#blogTitle h1 {
+    font-size: 25px;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    font-weight: bold;
+}
+#blogTitle h2 {
+    width: 500px;
+    position: absolute;
+    height: 50px;
+    line-height: 50px;
+    font-weight: normal;
+    top: 0px;
+    left: 85px;
+    font-size: 18px;
+     color: #696969 !important;
+}
+/*nav样式*/
+#blogTitle h1 a, #blogTitle h2 {
+     color: #000; 
+}
+#navList a:link {
+     text-shadow: 0px 0px 0px #000; 
+}
+#nav_next_page a {
+    background-color: #169fe6;
+}
+#blog-calendar{
+  background-color: #fff;
+}
+#navigator { 
+    height: 55px;
+}
+#navList {
+    height: 50px;
+    width:1300px;
+}
+#navList li {
+    height: 55px;
+    line-height: 55px;
+}
+/*内容区样式*/
+#topics {
+    background: rgba(255,255,255,.5);
+    overflow: hidden;
+    padding: 20px;
+    border: 1px solid #dedede;
+}
+#comment_form_container {
+   background: rgba(255,255,255,.5);
+}
+#main {
+    width: 1300px;
+    margin: 25px auto 0;
+}
+#mainContent {
+    background: none;
+    float: right;
+    overflow: visible;
+    text-overflow: ellipsis;
+    width:960px;
+    margin-right: 0px;
+    word-break: break-all;
+}
+#sideBar {
+    width: 290px;
+     margin-left: 18px; 
+    float: left;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: visible;
+    word-break: break-all;
+}
+#profile_block {
+    border: 0px solid #dedede;
+    background: rgba(255,255,255,.5); 
+}
+#widget_my_google {
+    border: 0px solid #dedede;
+}
+#widget_my_zzk {
+    borde: 0px solid #dedede;
+}
+.sidebar-block ul {
+    border: 0px solid #dedede;
+}
+#profile_block:hover {
+    border: 0px;
+}
+.catListTag ul li:hover{
+  background:#7fcaf1f5;
+color:#fff;
+}
+.catListTag ul li a:hover{
+color:#fff;
+}
+#homepage_top_pager{
+    display: none;
+     margin-top: 0px; 
+     height: 0px; 
+     line-height: 0px; 
+     font-size: 0px; 
+     text-align: right; 
+     margin-right: 0px; 
+     margin-top: 0px;
+}
+.pager {
+    text-align: right;
+}
+.topicListFooter .pager a:hover, .topicListFooter .pager span {
+    background: #169fe6;
+}
+a.c_b_p_desc_readmore {
+    color: #169fe6;
+}
+.postDesc a{
+    color: #696969;
+}
+.postDesc a:hover{
+    color: #169fe6;
+}
+.day {
+    background: rgba(255,255,255,0.5);
+}
+#blog-calendar {
+   background: rgba(255,255,255,0.5);
+}
+.mySearch {
+    background: rgba(255,255,255,0.5);
+}
+.sidebar-block {
+    background: rgba(255,255,255,0.5);
+}
+.catListView {
+   background: rgba(255,255,255,0.5);
+}
+.entrylistItem{
+background: rgba(255,255,255,0.5);
+}
+/*按钮颜色*/
+input.btn_my_zzk {
+    background: #45bcf9;
+}
+#comment_nav a:hover{
+    color: #169fe6;
+}
+.dayTitle:hover {
+   background: #169fe6;
+}
+/*底部样式*/
+#footer {
+border-top:1px solid #ccc;
+color:#fff;
+}
+.comment_textarea {
+ background-color:'';
+background:rgba(255,255,255,0.5);
+}
+div.commentform textarea {
+    background: rgba(255,255,255,0.5);
+}
+#myposts .PostList {
+background:rgba(255,255,255,0.5);
+}
+/*去掉广告*/
+#ad_t2,#cnblogs_c1,#under_post_news,#cnblogs_c2,#under_post_kb {display:none;!important}
+#blog-comments-placeholder {
+    padding: 0px;
+    border: 0px ;
+    padding-top: 0;
+    margin-top: 0px;
+    background: #f2f2f2;
+}
+@media screen and (max-width: 960px){
+    #blogTitle h1, #blogTitle h2{
+display:none;
+}
+#main{
+width:auto;
+display:flex;
+ justify-content: center;
+}
+#mainContent{
+width:auto;
+}
+}
+@media screen and (max-width: 1300px){
+    #sideBar{
+display:none;
+}
+#main{
+width:auto;
+display:flex;
+ justify-content: center;
+}
+#navList {
+    width: auto;
+}
+}

@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://www.cnblogs.com/yan7/p/7857833.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="转自于:http://www.jianshu.com/p/576dbf44b2ae 什么是JWT Json web token（JWT）是为了网络应用环境间传递声明而执行的一种基于JSON的开发标准（">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园</title>
+    
+    <link rel="stylesheet" href="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/bundle-simplememory.min.css">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/bundle-SimpleMemory-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/yan7/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/yan7/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/yan7/wlwmanifest.xml">
+    <script src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/amp4ads-host-v0.js.下载"></script><script src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/pubads_impl_rendering_2019121002.js.下载"></script><script async="" src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/encoder.js.下载"></script><script src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+    <script src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/blog-common.min.js.下载"></script>
+    <script>
+        var currentBlogId = 391155;
+        var currentBlogApp = 'yan7';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+    </script>
+    
+    
+    
+<link rel="preload" href="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/f.txt"></script><script src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/pubads_impl_2019121002.js.下载" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-37/html/container.html"></head>
+<body>
+    <a name="top"></a>
+    
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/yan7/"><img id="blogLogo" src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/yan7/">莫问今朝</a>
+</h1>
+<h2>
+逝者如斯夫,不舍昼夜
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/yan7/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E8%8E%AB%E9%97%AE%E4%BB%8A%E6%9C%9D%26%23183%3B">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/yan7/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+109&nbsp; </span>
+<span id="stats_article_count">文章 - 
+0&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+65</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/yan7/p/7857833.html">什么是JWT（JSON WEB TOKEN）</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <p>转自于:http://www.jianshu.com/p/576dbf44b2ae</p>
+<h2>什么是JWT&nbsp;</h2>
+<p>&nbsp; &nbsp; &nbsp;Json web token（JWT）是为了网络应用环境间传递声明而执行的一种基于JSON的开发标准（RFC 7519），该token被设计为紧凑且安全的，特别适用于分布式站点的单点登陆（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
+<h2>&nbsp; 起源</h2>
+<p>&nbsp; &nbsp;说起JWT，我们应该来谈一谈基于token的认证和传统的Session认证的区别。</p>
+<h2>&nbsp; 传统的session认证</h2>
+<p>&nbsp; &nbsp; 我们知道，http协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发送的请求，所以为了让我们的应用能识别是哪个用户发出的，我们只能在服务器存储一份用户登陆的信息，这份登陆信息会在响应时传递给服务器，告诉其保存为cookie，以便下次请求时发送给我们的应用，这样我们的英哟个就能识别请求来自哪个用户了，这就是传统的基于sessino认证</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;但是这种基于session的认证使应用本身很难得扩展，随着不用客户端的增加，独立的服务器已无法承载更多的用户，而这个时候基于session认证应用的问题就会暴露出来</p>
+<h2>&nbsp; 基于session认证所显露的问题</h2>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;Session：每个用户经过我们的应用认证之后，我们的应用都要在服务端做一次记录，以便用户下次请求的鉴别，通常而言session都是保存在内存中，而随着认证用户的增多，服务端的开销会明显增大</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 扩展性：用户认证之后，服务端做认证记录，如果认证的记录被保存在内存的话，这意味着用户下次请求还必须要请求在这台服务器上，这样才能拿到授权的资源，这样在分布式的应用上，响应的限制了负载均衡器的能力，也意味着限制了应用的扩展性</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; CSRF：因为是基于cookie来进行用户识别的，cookie如果被截获，用户就会很容易受到跨站请求伪造的攻击。</p>
+<h2>基于token的鉴权机制</h2>
+<p>&nbsp; &nbsp; 基于token的鉴权机制类似于http协议也是无状态的，它不需要在服务端去保留用户的认证信息或会话信息。这也就意味着机遇tokent认证机制的应用不需要去考虑用户在哪一台服务器登陆了，这就为应用的扩展提供了便利</p>
+<p>&nbsp; &nbsp; &nbsp;流程是这样的</p>
+<ul>
+<li>用户使用用户名密码请求服务器</li>
+<li>服务器进行验证用户信息</li>
+<li>服务器通过验证发送给用户一个token</li>
+<li>客户端存储token，并在每次请求时附加这个token值</li>
+<li>服务器验证token，并返回数据</li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp; 这个token必须要在每次请求时发送给服务器，它应该保存在请求头中，另外，服务器要支持CORS（跨来源资源共享）策略，一般我们在服务端这么做就可以了 Access-Control-Allow-Origin：*</p>
+<h2>JWT的构成</h2>
+<p>&nbsp; &nbsp; &nbsp; JWT是由三部分构成，将这三段信息文本用链接构成了JWT字符串。就像这样</p>
+<div class="cnblogs_code">
+<pre>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VySWQiOjEyMywiVXNlck5hbWUiOiJhZG1pbiJ9.Qjw1epD5P6p4Yy2yju3-fkq28PddznqRj3ESfALQy_U</pre>
+</div>
+<p>&nbsp; &nbsp; 第一部分我们称它为头部（header）第二部分我们称其为载荷（payload，类似于飞机上承载的物品），第三部分是签证（signature）</p>
+<h3>&nbsp; &nbsp;header</h3>
+<p>&nbsp; &nbsp; &nbsp; JWT的头部承载的两部分信息：</p>
+<ul>
+<li>声明类型，这里是jwt</li>
+<li>声明加密的算法，通常直接使用HMAC SHA256</li>
+</ul>
+<p>&nbsp; &nbsp;完整的头部就像下面这样的JSON</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">{
+     </span><span style="color: #800000;">'</span><span style="color: #800000;">typ</span><span style="color: #800000;">'</span>:<span style="color: #800000;">'</span><span style="color: #800000;">JWT</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+     </span><span style="color: #800000;">'</span><span style="color: #800000;">alg</span><span style="color: #800000;">'</span>:<span style="color: #800000;">'</span><span style="color: #800000;">HS256</span><span style="color: #800000;">'</span><span style="color: #000000;">  
+}</span></pre>
+</div>
+<p>&nbsp; &nbsp; 然后将头部进行base64加密（该加密是可以对称解密的），构成了第一部分</p>
+<div class="cnblogs_code">
+<pre>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</pre>
+</div>
+<h2>&nbsp; &nbsp; plyload</h2>
+<p>&nbsp; &nbsp; &nbsp; 载荷就是存放有效信息的地方。这个名字像是特指飞机上承载的货品，这些有效信息包含三个部分</p>
+<ul>
+<li>标准中注册的声明</li>
+<li>公共的声明</li>
+<li>私有的声明&nbsp;</li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp;标注中注册的声明（建议不强制使用）</p>
+<ul>
+<li>iss：jwt签发者</li>
+<li>sub：jwt所面向的用户</li>
+<li>aud：接收jwt的一方</li>
+<li>exp：jwt的过期时间，这个过期时间必须大于签发时间</li>
+<li>nbf：定义在什么时间之前，该jwt都是不可用的</li>
+<li>iat：jwt的签发时间</li>
+<li>jti：jwt的唯一身份标识，主要用来作为一次性token，从而回避重放攻击&nbsp;</li>
+</ul>
+<p>&nbsp; &nbsp; <strong>公共的声明：</strong></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;公共的声明可以添加任何的信息，一般添加用户的相关信息或其它业务需要的必要信息，但不建议添加敏感信息，因为该部分在客户端可解密；</p>
+<p>&nbsp; &nbsp; &nbsp;<strong>私有的声明</strong></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;私有的声明是提供者和消费者功能定义的声明，一般不建议存放敏感信息，因为base64是对称解密的，意味着该部分信息可以归类为名文信息。</p>
+<p>&nbsp; &nbsp; &nbsp;定义一个payload</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">{
+  </span><span style="color: #800000;">"</span><span style="color: #800000;">sub</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">1234567890</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+  </span><span style="color: #800000;">"</span><span style="color: #800000;">name</span><span style="color: #800000;">"</span>: <span style="color: #800000;">"</span><span style="color: #800000;">John Doe</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+  </span><span style="color: #800000;">"</span><span style="color: #800000;">admin</span><span style="color: #800000;">"</span>: <span style="color: #0000ff;">true</span><span style="color: #000000;">
+}</span></pre>
+</div>
+<p>&nbsp; &nbsp; 然后将其base64加密，得到jwt的一部分</p>
+<div class="cnblogs_code">
+<pre>eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9</pre>
+</div>
+<p>Signature</p>
+<p>&nbsp; &nbsp; jwt的第三部分是一个签证信息，这个签证信息由三部分组成：</p>
+<ul>
+<li>header(base64后的)</li>
+<li>payload(base64后的)</li>
+<li>secred&nbsp; &nbsp; &nbsp;</li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;这个部分需要base64加密后的header和base64加密后的payload使用“.”连接组成的字符串，然后通过header中声明的加密方式进行加secret组合加密，然后就构成了jwt的第三部分</p>
+<p>&nbsp; &nbsp; &nbsp;&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">var</span> encodedString = base64UrlEncode(header) + <span style="color: #800000;">'</span><span style="color: #800000;">.</span><span style="color: #800000;">'</span> +<span style="color: #000000;"> base64UrlEncode(payload);
+</span><span style="color: #0000ff;">var</span> signature = HMACSHA256(encodedString, <span style="color: #800000;">'</span><span style="color: #800000;">secret</span><span style="color: #800000;">'</span>); <span style="color: #008000;">//</span><span style="color: #008000;"> TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</span></pre>
+</div>
+<p>&nbsp; &nbsp; 将这三部分用“.”连接成一个完整的字符串，构成了最终的jwt：</p>
+<div class="cnblogs_code">
+<pre>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</pre>
+</div>
+<p>&nbsp; &nbsp; &nbsp;注意：secret是保存在服务器端的，jwt的签发也是在服务端的，secret就是用来进行jwt的签发和jwt的验证，所以它就是你服务端的私钥，在任何场景都不应该流露出去，一旦客户端得知这个secret，那就意味着客户端可以自我签发jwt了</p>
+<p>&nbsp;应用&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; 一般是在请求头里加入Authorization，并加上Bearer标注：</p>
+<div class="cnblogs_code">
+<pre>fetch(<span style="color: #800000;">'</span><span style="color: #800000;">api/user/1</span><span style="color: #800000;">'</span><span style="color: #000000;">, {
+  headers: {
+    </span><span style="color: #800000;">'</span><span style="color: #800000;">Authorization</span><span style="color: #800000;">'</span>: <span style="color: #800000;">'</span><span style="color: #800000;">Bearer </span><span style="color: #800000;">'</span> +<span style="color: #000000;"> token
+  }
+})</span></pre>
+</div>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;服务端会验证token，如果验证通过就会返回相应的资源，整个流程就是这样</p>
+<p><img src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/1147658-20171118202151718-1630139158.png" alt=""></p>
+<p>&nbsp; &nbsp;总结</p>
+<p>&nbsp; &nbsp; &nbsp; 优点：</p>
+<ul>
+<li>因为json的通用性，所以JWT是可以跨语言支持的，像C#，JavaScript，NodeJS，PHP等许多语言都可以使用</li>
+<li>因为由了payload部分，所以JWT可以在自身存储一些其它业务逻辑所必要的非敏感信息</li>
+<li>便于传输，jwt的构成非常简单，字节占用很小，所以它是非常便于传输的</li>
+<li>它不需要在服务端保存会话信息，所以它易于应用的扩展</li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;安全相关</p>
+<ul>
+<li>不应该在jwt的payload部分存储敏感信息，因为该部分是客户端可解密的部分</li>
+<li>保护好secret私钥。该私钥非常重要</li>
+<li>如果可以，请使用https协议</li>
+</ul>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/yan7/category/1117255.html" target="_blank">JWT</a></div>
+
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7857833,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;7b94279b-3c22-e711-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/yan7/" target="_blank"><img src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/20180424083155.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/yan7/">莫问今朝·</a><br>
+            <a href="https://home.cnblogs.com/u/yan7/followees/">关注 - 55</a><br>
+            <a href="https://home.cnblogs.com/u/yan7/followers/">粉丝 - 51</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;7b94279b-3c22-e711-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7857833,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">3</span>
+    </div>
+    <div class="buryit" onclick="votePost(7857833,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/yan7/p/7857348.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/yan7/p/7857348.html" title="发布于 2017-11-18 17:01">WebAPI返回JSON</a>
+    <br>
+    <a href="https://www.cnblogs.com/yan7/p/7860390.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/yan7/p/7860390.html" title="发布于 2017-11-19 17:16">详解MongoDB管理命令</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2017-11-18 20:27</span>&nbsp;
+<a href="https://www.cnblogs.com/yan7/">莫问今朝·</a>&nbsp;
+阅读(<span id="post_view_count">37878</span>)&nbsp;
+评论(<span id="post_comment_count">4</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=7857833" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(7857833);return false;">收藏</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/highlight.min.js.下载"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 391155, cb_blogApp = 'yan7', cb_blogUserGuid = '7b94279b-3c22-e711-9fc1-ac853d9f53cc';
+    var cb_entryId = 7857833, cb_entryCreatedDate = '2017-11-18 20:27', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder">
+
+<div id="comment_pager_top">
+    
+</div>
+
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"><div class="feedbackNoItems"></div></div>	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;
+
+<span class="comment_actions">
+    
+    
+    
+    
+</span>
+
+
+				</div>
+				
+<a href="https://www.cnblogs.com/yan7/p/7857833.html#4044434" class="layer">#1楼</a>
+<a name="4044434" id="comment_anchor_4044434"></a>
+
+ 
+<span class="comment_date">2018-08-16 17:17</span>
+
+ 
+
+            <a id="a_comment_author_4044434" href="https://www.cnblogs.com/springsource/" target="_blank">何锦彬</a>
+
+			</div>
+			<div class="feedbackCon">
+				
+<div id="comment_body_4044434" class="blog_comment_body">
+    secret 泄漏了，就意味着破解了
+</div>
+        <div class="comment_vote">
+            <span class="comment_error" style="color: red"></span>
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4044434, &#39;Digg&#39;, this.parentElement, false);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(4044434, &#39;Bury&#39;, this.parentElement, false);">
+                反对(0)
+            </a>
+        </div>
+        
+
+			</div>
+		</div>
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;
+
+<span class="comment_actions">
+    
+    
+    
+    
+</span>
+
+
+				</div>
+				
+<a href="https://www.cnblogs.com/yan7/p/7857833.html#4044925" class="layer">#2楼</a>
+<a name="4044925" id="comment_anchor_4044925"></a>
+[<span class="louzhu">楼主</span>]
+ 
+<span class="comment_date">2018-08-17 12:44</span>
+
+ 
+
+            <a id="a_comment_author_4044925" href="https://www.cnblogs.com/yan7/" target="_blank">莫问今朝·</a>
+
+			</div>
+			<div class="feedbackCon">
+				
+<div id="comment_body_4044925" class="blog_comment_body">
+    <a href="https://www.cnblogs.com/yan7/p/7857833.html#4044434" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,4044434);">@</a>
+何锦彬<br>我感觉不能这么说,<br>1.世界上没有绝对的安全,所有的安全都是建立于一定基础上的<br>2.secret就像开门的钥匙一样,别人拿到了你得钥匙那门肯定能打开的
+</div>
+        <div class="comment_vote">
+            <span class="comment_error" style="color: red"></span>
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4044925, &#39;Digg&#39;, this.parentElement, false);">
+                支持(1)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(4044925, &#39;Bury&#39;, this.parentElement, false);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_4044925_avatar" style="display:none">
+            https://pic.cnblogs.com/face/1147658/20180424083155.png
+        </span>
+
+			</div>
+		</div>
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;
+
+<span class="comment_actions">
+    
+    
+    
+    
+</span>
+
+
+				</div>
+				
+<a href="https://www.cnblogs.com/yan7/p/7857833.html#4139160" class="layer">#3楼</a>
+<a name="4139160" id="comment_anchor_4139160"></a>
+
+ 
+<span class="comment_date">2018-12-14 13:57</span>
+
+ 
+
+            <a id="a_comment_author_4139160" href="https://www.cnblogs.com/Bkxk/" target="_blank">Bk小凯笔记</a>
+
+			</div>
+			<div class="feedbackCon">
+				
+<div id="comment_body_4139160" class="blog_comment_body">
+    闫章帅？
+</div>
+        <div class="comment_vote">
+            <span class="comment_error" style="color: red"></span>
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4139160, &#39;Digg&#39;, this.parentElement, false);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(4139160, &#39;Bury&#39;, this.parentElement, false);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_4139160_avatar" style="display:none">
+            https://pic.cnblogs.com/face/1450963/20181214135921.png
+        </span>
+
+			</div>
+		</div>
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;
+
+<span class="comment_actions">
+    
+    
+    
+    
+</span>
+
+
+				</div>
+				
+<a href="https://www.cnblogs.com/yan7/p/7857833.html#4140039" class="layer">#4楼</a>
+<a name="4140039" id="comment_anchor_4140039"></a>
+[<span class="louzhu">楼主</span>]
+        <span id="comment-maxId" style="display:none">4140039</span>
+        <span id="comment-maxDate" style="display:none">2018/12/16 上午11:07:06</span>
+ 
+<span class="comment_date">2018-12-16 11:07</span>
+
+ 
+
+            <a id="a_comment_author_4140039" href="https://www.cnblogs.com/yan7/" target="_blank">莫问今朝·</a>
+
+			</div>
+			<div class="feedbackCon">
+				
+<div id="comment_body_4140039" class="blog_comment_body">
+    <a href="https://www.cnblogs.com/yan7/p/7857833.html#4139160" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,4139160);">@</a>
+Bk小凯笔记<br>你是谁?李文凯?
+</div>
+        <div class="comment_vote">
+            <span class="comment_error" style="color: red"></span>
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4140039, &#39;Digg&#39;, this.parentElement, false);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(4140039, &#39;Bury&#39;, this.parentElement, false);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_4140039_avatar" style="display:none">
+            https://pic.cnblogs.com/face/1147658/20180424083155.png
+        </span>
+
+			</div>
+		</div>
+
+<div id="comment_pager_bottom">
+    
+</div>
+
+
+</div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/yan7/p/7857833.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/yan7/p/7857833.html#top">返回顶部</a></div>
+    <div id="comment_form_container"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-ucancode&#39;)">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://click.aliyun.com/m/1000081987/" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云&#39;)">【推荐】阿里云双11返场来袭，热门产品低至一折等你来抢！</a><br><a href="https://cloud.tencent.com/act/developer?fromSource=gwzcw.3196335.3196335.3196335&amp;utm_medium=cpc&amp;utm_id=gwzcw.3196335.3196335.3196335" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-腾讯云&#39;)">【活动】开发者上云必备，腾讯云1核4G 2M云服务器11元/月起</a><br><a href="https://cloud.baidu.com/campaign/Promotion-20191111/index.html?track=cp:dsp|pf:pc|pp:chui-bokeyuan-huodong-19shuangshiyiganenji-BCC-cpaxingshi-191210|pu:cpa-xingshi|ci:2019syj|kw:2172212" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-百度云&#39;)">【推荐】百度智能云岁末感恩季，明星产品低至1元新老用户畅享</a><br><a href="https://www.jdcloud.com/cn/activity/newUser?utm_source=DMT_cnblogs&amp;utm_medium=CH&amp;utm_campaign=09vm&amp;utm_term=Virtual-Machines" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-京东云&#39;)">【活动】京东云限时优惠1.5折购云主机，最高返价值1000元礼品！</a><br><a href="https://developer.aliyun.com/ask/258515?utm_content=g_1000095381" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云开发者社区-T2&#39;)">【推荐】大数据技术之flink百问，阿里云开发者社区一线收集、吐血整理</a><br><a href="https://developer.aliyun.com/ask/266295?utm_content=g_1000095378" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云开发者社区-T2&#39;)">【推荐】2019年终回顾：程序员这些年经历最大的变化</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/gpt.js.下载"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CKu85bW49eYCFQ5olgodvQEKlQ"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/saved_resource.html"></iframe></div></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="JWT（Json web token）认证详解" href="https://www.cnblogs.com/lizm166/p/7844110.html" target="_blank" onclick="clickRecomItmem(7844110)">JWT（Json web token）认证详解</a><br>·  <a title="golang学习笔记10beegoapi用jwt验证auth2token获取解码信息" href="https://www.cnblogs.com/zdz8207/p/golang-learn-10.html" target="_blank" onclick="clickRecomItmem(9062313)">golang学习笔记10beegoapi用jwt验证auth2token获取解码信息</a><br>·  <a title="基于jwt的token验证" href="https://www.cnblogs.com/java-jun-world2099/p/9146143.html" target="_blank" onclick="clickRecomItmem(9146143)">基于jwt的token验证</a><br>·  <a title="程序员过关斩将--更加优雅的Token认证方式JWT" href="https://www.cnblogs.com/zhanlang/p/11442407.html" target="_blank" onclick="clickRecomItmem(11442407)">程序员过关斩将--更加优雅的Token认证方式JWT</a><br>·  <a title="登陆鉴权方案设计" href="https://www.cnblogs.com/jmcui/p/10966910.html" target="_blank" onclick="clickRecomItmem(10966910)">登陆鉴权方案设计</a><br>»  <a target="_blank" href="https://recomm.cnblogs.com/blogpost/7857833">更多推荐...</a><div id="cnblogs_t5"><a href="https://developer.aliyun.com/ask/258350?utm_content=g_1000088952" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T5-阿里云开发者社区&#39;)">精品问答：前端开发必懂之 HTML 技术五十问</a></div></div></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CKy85bW49eYCFQ5olgodvQEKlQ">
+            
+        <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="2" data-load-complete="true" src="./什么是JWT（JSON WEB TOKEN） - 莫问今朝· - 博客园_files/saved_resource(1).html"></iframe></div></div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/653326/" target="_blank">苹果应用商店在2019年创造大约500亿美元销售额 但增速放缓</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/653325/" target="_blank">一颗恒星的爆发会如何影响地球上的生命？</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/653324/" target="_blank">亚马逊硬件主管回应Sonos窃密指控，称竞争才是王道</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/653323/" target="_blank">PNAS：首个可生物降解的植入式传感器诞生，可“打开”血脑屏障</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/653322/" target="_blank">蛋壳公寓更新招股书，发行区间每股14.5到16.5美元</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem"><!--done-->
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/yan7/">
+            莫问今朝·
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/yan7/" title="入园时间：2017-04-16">
+            2年8个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/yan7/followers/">
+            51
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/yan7/followees/">
+            55
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow(&#39;7b94279b-3c22-e711-9fc1-ac853d9f53cc&#39;)">+加关注</a></div>
+        <script>getFollowStatus('7b94279b-3c22-e711-9fc1-ac853d9f53cc');</script>
+    </div>
+</div>
+
+</div>
+
+			<div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/12/09&#39;); return false;">&lt;</a>
+                            </td>
+                            <td align="center">2020年1月</td>
+                            <td align="right" class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2020/02/09&#39;); return false;">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+                    <th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+                    <th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+                    <th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+                    <th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+                    <th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+                    <th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+                    <th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+        </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">29</td>
+                            <td class="CalOtherMonthDay" align="center">30</td>
+                            <td class="CalOtherMonthDay" align="center">31</td>
+                        <td class="" align="center">
+                            1
+                        </td>
+                        <td class="" align="center">
+                            2
+                        </td>
+                        <td class="" align="center">
+                            3
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        4
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            5
+                        </td>
+                            <td class="" align="center">
+                                6
+                            </td>
+                            <td class="" align="center">
+                                7
+                            </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                            <td class="CalTodayDay" align="center">
+                                9
+                            </td>
+                            <td class="" align="center">
+                                10
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            11
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            12
+                        </td>
+                            <td class="" align="center">
+                                13
+                            </td>
+                            <td class="" align="center">
+                                14
+                            </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                            <td class="" align="center">
+                                16
+                            </td>
+                            <td class="" align="center">
+                                17
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            18
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            19
+                        </td>
+                            <td class="" align="center">
+                                20
+                            </td>
+                            <td class="" align="center">
+                                21
+                            </td>
+                            <td class="" align="center">
+                                22
+                            </td>
+                            <td class="" align="center">
+                                23
+                            </td>
+                            <td class="" align="center">
+                                24
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            25
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            26
+                        </td>
+                            <td class="" align="center">
+                                27
+                            </td>
+                            <td class="" align="center">
+                                28
+                            </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                            <td class="" align="center">
+                                30
+                            </td>
+                            <td class="" align="center">
+                                31
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            1
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalOtherMonthDay" align="center">
+                            2
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                4
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                5
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                6
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                7
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            8
+                        </td>
+                </tr>
+    </tbody>
+</table></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+<div id="sidebar_shortcut" class="sidebar-block">
+    <div class="catListLink">
+<h3 class="catListTitle">
+常用链接
+</h3>
+<ul>
+		<li>
+
+<a href="https://www.cnblogs.com/yan7/p/" title="我的博客的随笔列表">我的随笔</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/yan7/MyComments.html" title="我的发表过的评论列表">我的评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/yan7/OtherPosts.html" title="我评论过的随笔列表">我的参与</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/yan7/RecentComments.html" title="我的博客的评论列表">最新评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/yan7/tag/" title="我的博客的标签列表">我的标签</a>
+</li>
+
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+
+
+</div>
+
+<!-- 最新随笔 -->
+<div id="sidebar_recentposts" class="sidebar-block">
+    <div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/yan7/p/11423382.html">1.Cassandra查询操作趟坑记录</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/yan7/p/11165595.html">2.SqlServer日期时间函数</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/yan7/p/10338936.html">3.JToken和BsonValue对象的相互转换</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/yan7/p/10338783.html">4.Mongo C# Driver 聚合使用---深入浅出</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/yan7/p/10042170.html">5.Core官方DI解析(5)-ServiceProviderEngine</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/yan7/p/10036148.html">6.Core官方DI解析(4)--CallSiteRuntimeResolver</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/yan7/p/10030080.html">7.Core官方DI解析(3)-ServiceCallSite.md</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/yan7/p/10024341.html">8.Core官方DI解析(2)-ServiceProvider</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/yan7/p/10018479.html">9.Core官方DI剖析(1)--ServiceProvider类和ServiceCollection类</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/yan7/p/9970934.html">10.mongo 监听指定语句</a>
+
+                </li>
+			
+
+</ul>
+</div>
+
+
+</div>
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    
+</div>
+
+<!-- 积分与排名 -->
+<div id="sidebar_scorerank" class="sidebar-block">
+    <div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	
+73522
+	</li>
+	<li class="liRank">
+		排名 -	
+9047
+	</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔分类
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1236590.html" rel="" target="">
+    .NET Core(8)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1134890.html" rel="" target="">
+    Asp.Net(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1114997.html" rel="" target="">
+    Asp.Net Web API(10)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1114983.html" rel="" target="">
+    Asp.Net.Core(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1283814.html" rel="" target="">
+    AutoFac(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1283815.html" rel="" target="">
+    AutoMapper
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1281599.html" rel="" target="">
+    C#(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1536134.html" rel="" target="">
+    Cassandra(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1350099.html" rel="" target="">
+    DI(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1208983.html" rel="" target="">
+    Docker(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1121421.html" rel="" target="">
+    JS(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1117255.html" rel="" target="">
+    JWT(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1207134.html" rel="" target="">
+    Linux(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1116274.html" rel="" target="">
+    MongoDB(17)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1238184.html" rel="" target="">
+    MSIL(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1500954.html" rel="" target="">
+    MSSQL(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1127709.html" rel="" target="">
+    Net(6)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1121556.html" rel="" target="">
+    nginx(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1281100.html" rel="" target="">
+    RabbitMQ(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1114990.html" rel="" target="">
+    Redis(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1134999.html" rel="" target="">
+    SignalR(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1122995.html" rel="" target="">
+    SqlSugar
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1138561.html" rel="" target="">
+    Vue(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1216742.html" rel="" target="">
+    Web(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1147032.html" rel="" target="">
+    WPF(11)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1158205.html" rel="" target="">
+    并发(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1117852.html" rel="" target="">
+    工具(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1157716.html" rel="" target="">
+    经典面试题(8)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1322202.html" rel="" target="">
+    前端(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/category/1289448.html" rel="" target="">
+    设计模式(2)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2019/08.html" rel="" target="">
+    2019年8月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2019/07.html" rel="" target="">
+    2019年7月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2019/01.html" rel="" target="">
+    2019年1月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2018/11.html" rel="" target="">
+    2018年11月(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2018/10.html" rel="" target="">
+    2018年10月(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2018/08.html" rel="" target="">
+    2018年8月(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2018/07.html" rel="" target="">
+    2018年7月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2018/06.html" rel="" target="">
+    2018年6月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2018/05.html" rel="" target="">
+    2018年5月(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2018/04.html" rel="" target="">
+    2018年4月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2018/03.html" rel="" target="">
+    2018年3月(8)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2018/02.html" rel="" target="">
+    2018年2月(10)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2018/01.html" rel="" target="">
+    2018年1月(16)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2017/12.html" rel="" target="">
+    2017年12月(16)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2017/11.html" rel="" target="">
+    2017年11月(27)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/yan7/archive/2017/10.html" rel="" target="">
+    2017年10月(3)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/yan7/p/8603640.html#4341750">1. Re:使用c#对MongoDB进行查询(1)</a></li>
+                    <li class="recent_comment_body">@ 智能觉醒...</li>
+                    <li class="recent_comment_author">--莫问今朝·</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/yan7/p/8603640.html#4341746">2. Re:使用c#对MongoDB进行查询(1)</a></li>
+                    <li class="recent_comment_body">@ 智能觉醒是有的, 在linq命名空间下...</li>
+                    <li class="recent_comment_author">--莫问今朝·</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/yan7/p/8603640.html#4341334">3. Re:使用c#对MongoDB进行查询(1)</a></li>
+                    <li class="recent_comment_body"><br>这个版本的 AsQurable()  方法怎不支持了,老提示我没有这个方法了</li>
+                    <li class="recent_comment_author">--智能觉醒</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/yan7/p/8603640.html#4307468">4. Re:使用c#对MongoDB进行查询(1)</a></li>
+                    <li class="recent_comment_body">集合必须tolist()才能出来数据</li>
+                    <li class="recent_comment_author">--lovejean</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/yan7/p/9498685.html#4294243">5. Re:.NET Core 使用RabbitMQ</a></li>
+                    <li class="recent_comment_body">//返回消息确认channel.BasicAck(ea.DeliveryTag, true);关于这块，应该是channel.BasicAck(ea.DeliveryTag, false);false...</li>
+                    <li class="recent_comment_author">--梧桐红</li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/yan7/p/7857833.html">
+                            1. 什么是JWT（JSON WEB TOKEN）(37877)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/yan7/p/8603640.html">
+                            2. 使用c#对MongoDB进行查询(1)(10672)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/yan7/p/8133897.html">
+                            3. Vue-Methods中使用Filter(8575)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/yan7/p/9811126.html">
+                            4. vue防止按钮在短时间内被多次点击的方法(7875)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/yan7/p/8085410.html">
+                            5. ASP.NET.Core中使用AutoMapper(7295)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    <div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/yan7/p/8603640.html">
+                            1. 使用c#对MongoDB进行查询(1)(14)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/yan7/p/9498685.html">
+                            2. .NET Core 使用RabbitMQ(9)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/yan7/p/8918698.html">
+                            3. AutoMapper快速上手(7)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/yan7/p/8085410.html">
+                            4. ASP.NET.Core中使用AutoMapper(6)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/yan7/p/9903700.html">
+                            5. C#使用异步操作时的注意要点(翻译)(6)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+<div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">推荐排行榜</h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/yan7/p/9498685.html">
+                                1. .NET Core 使用RabbitMQ(14)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/yan7/p/9187874.html">
+                                2. .NET Core中延迟单例另一种写法【.NET Core和.NET Framework的beforefieldinit差异】(10)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/yan7/p/9501638.html">
+                                3. C#7.0中的解构功能---Deconstruct(7)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/yan7/p/9903700.html">
+                                4. C#使用异步操作时的注意要点(翻译)(6)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/yan7/p/8918698.html">
+                                5. AutoMapper快速上手(6)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2020 莫问今朝&amp;#183;
+<br><span id="poweredby">Powered by .NET Core 3.1.0 on Linux</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+</body></html>

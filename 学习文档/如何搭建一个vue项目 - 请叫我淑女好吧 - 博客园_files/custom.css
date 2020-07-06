@@ -1,0 +1,91 @@
+body {
+    background: url(https://www.cnblogs.com/images/cnblogs_com/yanxulan/1467545/o_sign_bg.db29b0fb.png) fixed;
+    background-color: #b8e5f8;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    color: #000;
+    font-family: "Helvetica Neue",Helvetica,Verdana,Arial,sans-serif;
+    font-size: 12px;
+}
+#home {
+    width: 80%;
+    margin-top: 20px;
+    background-color: rgba(255,255,255,0.8);
+}
+#blogTitle h1 a{
+    font-size: 50px;
+}
+
+#navList {
+    font-size: 18px;
+}
+#navList a {
+    padding-top:15%;
+}
+#navList a:hover {
+    color: #4C9ED9;
+}
+#sideBar {
+    font-size: 14px;
+    opacity: 0.8;
+}
+#sideBar .catListTitle {
+    font-size: 18px;
+    margin-top: 21px;
+    margin-bottom: 10.5px;
+    border-left: 10px solid #60c6f1;
+    padding: 10px 0 10px 14px;
+    background-color: #f7f7f7;
+}
+.postTitle {
+    border-left: 6px solid #21759b;
+}
+#blogTitle h2 { 
+    padding-left: 60px;
+}
+#blog-news {
+    overflow: hidden;
+    padding: 0 10px;
+}
+#sideBar a {
+    color: #1a5584;
+}
+.CalNextPrev{
+    text-align:center !important;
+}
+.CalTodayDay {
+    background: #60c6f1 !important;
+}
+#sidebar_search_box, #sideBarMain ul{
+    padding: 0 10px;
+}
+#navigator {
+    font-size: 13px;
+    border-bottom: 1px solid #403939;
+    border-top: 1px solid #403939;
+    height: 50px;
+    clear: both;
+    margin-top: 25px;
+}
+#footer {
+    color: #080707;
+    text-align: center;
+    min-height: 15px;
+    _height: 15px;
+    border-top: 1px solid #403939;
+    margin-top: 50px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    font-size:14px;
+}
+.myposts_title, #taglist_title {
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px !important;
+    color: #1a5584;
+}
+#myposts .postDesc2 {
+    font-size: 14px !important;
+}
